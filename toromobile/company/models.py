@@ -39,7 +39,3 @@ class Company(models.Model):
     class Meta:
         ordering = ['toro_c_date_creation']
         verbose_name = "Compañia"
-        
-class Meta:
-    verbose_app = "hola mundo"
-    
