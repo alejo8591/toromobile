@@ -18,6 +18,7 @@ class CodeDane(models.Model):
         
     class Meta:
         ordering = ['toro_cda_name_city']
+        verbose_name = "Códigos DANE ciudade"
 #Modelo referente a los datos del conductor    
 class CarDriver(models.Model):
     toro_cd_type_id = models.IntegerField(max_length= 2, choices=((1, 'Cédula'),(2, 'NIT'),(3, 'Extranjería')), verbose_name='Tipo de identificación', help_text="Tipo de identificación del conductor")
@@ -28,7 +29,6 @@ class CarDriver(models.Model):
     toro_cd_phone = models.IntegerField(max_length=10, verbose_name='Telefono', help_text="Número telefonico del conductor del vehiculo")
     toro_cd_address = models.CharField(max_length=40, verbose_name='Dirección', help_text="Dirección de contacto del conductor del vehiculo")
     toro_cd_license = models.IntegerField(max_length= 2, choices=((4, '4'),(5, '5'),(6, '6')), verbose_name='Categoria Licencia', help_text="Categoria de la licencia 4, 5 ó 6")
-    toro_cd_date_created = models.DateField(default=datetime.now, auto_now = False, editable=False, verbose_name='Fecha de creación conductor')
     toro_cd_codedane = models.ForeignKey(CodeDane, verbose_name='Ciudad',  help_text='Código de la ciudad según el DANE')
     #Optimización para ver en el admin site de Django
     def __unicode__(self):
@@ -36,3 +36,4 @@ class CarDriver(models.Model):
         
     class Meta:
         ordering = ['toro_cd_id']
+        verbose_name = "Datos conductore"
