@@ -16,6 +16,7 @@ class CarMark(models.Model):
         
     class Meta:
         ordering = ['toro_cm_code']
+        verbose_name = "Marcas de los Carro"
 
 #Linea de los carros con su respectiva marca referente a MINMMARCA
 class CarLine(models.Model):
@@ -27,6 +28,7 @@ class CarLine(models.Model):
         
     class Meta:
         ordering = ['toro_cl_code']
+        verbose_name = "Tipo de Lineas de los Carro"
     
 #Color de los carros referente MINMCOLP    
 class CarColor(models.Model):
@@ -37,6 +39,7 @@ class CarColor(models.Model):
         
     class Meta:
         ordering = ['toro_cc_code']
+        verbose_name = "Tipos de Colores de los Carro"
     
 #Tipo de Carroceria de los Carros referente a MINMTICARROC
 class CarBodyWork(models.Model):
@@ -47,6 +50,7 @@ class CarBodyWork(models.Model):
         
     class Meta:
         ordering = ['toro_cbw_code']
+        verbose_name = "Tipos de Carrocerias de los Carro"
         
 #Datos del dueño del Vehiculo
 class CarOwner(models.Model):
@@ -60,6 +64,7 @@ class CarOwner(models.Model):
         
     class Meta:
         ordering = ['toro_co_type_id']
+        verbose_name = "Dueños de los Vehiculo"
         
 #Datos del encargado del Vehiculo    
 class CarMandated(models.Model):
@@ -73,6 +78,7 @@ class CarMandated(models.Model):
         
     class Meta:
         ordering = ['toro_cm_type_id']
+        verbose_name = "Responsable de los Vehiculo"
         
 #Clase general para crear el carro
 class Car(models.Model):
@@ -91,10 +97,11 @@ class Car(models.Model):
    toro_car_soat_date = models.DateField(verbose_name='Fecha Vencimiento S.O.A.T', help_text="Fecha de vencimiento de la Poliza ")
    toro_car_owner = models.ForeignKey(CarOwner, verbose_name='Dueño Vehiculo')
    toro_car_mandated = models.ForeignKey(CarMandated, verbose_name='Tenedor Vehiculo')
-   toro_date_car_created = models.DateField(default=datetime.now, auto_now = False, editable=False, verbose_name='Fecha de creación vehiculo')
+   toro_car_date_created = models.DateField(default=datetime.now, auto_now = False, editable=False, verbose_name='Fecha de creación vehiculo')
    #Optimización para ver en el admin site de Django
    def __unicode__(self):
-       return u'%s %s' %(self.toro_car_plate, self.toro_date_car_created)
+       return u'%s %s' %(self.toro_car_plate, self.toro_car_date_created)
         
    class Meta:
         ordering = ['toro_car_plate']
+        verbose_name = "Vehiculo"
