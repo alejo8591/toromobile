@@ -3,6 +3,12 @@
 import os
 import django
 DEBUG = True
+#Full filesystem path to the project.
+#PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+# Name of the directory for the project.
+#PROJECT_DIRNAME = PROJECT_ROOT.split(os.sep)[-1]
+
 TEMPLATE_DEBUG = DEBUG
 DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 DJANGO_ROOT = os.path.dirname(os.path.realpath(django.__file__))
@@ -136,6 +142,7 @@ INSTALLED_APPS = (
     'car',
     'driver',
     'company',
+    'package',
 )
 
 # A sample logging configuration. The only tangible logging
