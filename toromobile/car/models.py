@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from datetime import datetime, time
-from driver.models import CodeDane
+from city.models import CodeDANE
 """
     Este modelo se hace con base a la documento del Ministerio de Trasporte
     Direccion de transito y transporte, Sistema de Información para la generación del
@@ -84,9 +84,9 @@ class CarOwner(models.Model):
 #Placa del Vehículo        
 class CarPlate(models.Model):
     toro_cp_plate = models.CharField(max_length=6, verbose_name='Placa Vehiculo', help_text="Tres letras y tres número ABC123 Sin espacios")
-    tor_cp_plate_city = models.ForeignKey(CodeDane, verbose_name='Ciudad Placa', help_text="Ciudad de registro de la Placa")
+    toro_cp_plate_city = models.ForeignKey(CodeDANE, verbose_name='Ciudad Placa', help_text="Ciudad de registro de la Placa")
     def __unicode__(self):
-       return u'%s %s' %(self.toro_cp_plate, self.tor_cp_city_plate)
+       return u'%s %s' %(self.toro_cp_plate, self.toro_cp_plate_city)
         
     class Meta:
         ordering = ['toro_cp_plate']
@@ -101,7 +101,8 @@ class CarTrailer(models.Model):
     class Meta:
         ordering = ['toro_ct_id']
         verbose_name = "Configuración Remolque"
-    
+
+
 #Clase general para crear el carro
 class Car(models.Model):
    toro_car_plate = models.ForeignKey(CarPlate, verbose_name='Placa Vehículo', help_text="Placa del Vehiculo a Usar")
