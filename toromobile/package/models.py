@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from datetime import datetime
-from driver.models import CodeDane
+from city.models import CodeDANE
 
 """
     Este modelo se hace con base a la documento del Ministerio de Trasporte
@@ -54,7 +54,7 @@ class Package(models.Model):
     toro_p_description = models.TextField(max_length=200, verbose_name='Descripción Abreviada', help_text="Descripción abreviada de Producto(s)")
     toro_p_name_shipping = models.CharField(max_length=120, verbose_name='Persona Remitente', help_text="Nombre de la persona que remite Apellido Nombre")
     toro_p_name_receiver = models.CharField(max_length=120, verbose_name='Persona Destinatario', help_text="Nombre de la persona que recibe Apellido Nombre")
-    toro_p_city_receiver = models.ForeignKey(CodeDane, verbose_name='Dirección Destino', help_text="Código de Ciudad según DANE")
+    toro_p_city_receiver = models.ForeignKey(CodeDANE, verbose_name='Dirección Destino', help_text="Código de Ciudad según DANE")
     toro_c_date_creation = models.DateField(default=datetime.now, auto_now = False, editable=False, verbose_name='Fecha de creación de paquete')
     #Optimización para el admin
     def __unicode__(self):
@@ -62,4 +62,4 @@ class Package(models.Model):
         
     class Meta:
         ordering = ['toro_c_date_creation']
-        verbose_name = "Mercancias"
+        verbose_name = "Paquete"
