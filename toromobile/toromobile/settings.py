@@ -143,6 +143,7 @@ INSTALLED_APPS = (
     'driver',
     'company',
     'package',
+    'manifest',
 )
 
 # A sample logging configuration. The only tangible logging
