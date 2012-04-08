@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django.db import models
 from django.forms.extras.widgets import SelectDateWidget
-from car.models import Car, CarBodyWork, CarColor, CarLine, CarMandated, CarMark, CarOwner, CarTrailer
+from car.models import Car, CarBodyWork, CarColor, CarLine, CarMandated, CarMark, CarOwner, CarTrailer, CarPlate
 from car.SelectTimeWidget import SelectTimeWidget
     
 class CarBodyWorkAdmin(admin.ModelAdmin):
@@ -34,7 +34,11 @@ class CarAdmin(admin.ModelAdmin):
         #Cambiando la manera de ver el DateTime con respecto al admin    
         models.DateField: {'widget': SelectDateWidget}
     }
-    list_display = ('toro_car_plate', 'toro_car_date_created')    
+    list_display = ('toro_car_plate', 'toro_car_date_created')
+    
+class CarPlateAdmin(admin.ModelAdmin):
+    list_display = ('toro_cp_plate', 'toro_cp_plate_city')
+ 
 #Adicionando a django admin 
 admin.site.register(CarBodyWork, CarBodyWorkAdmin)
 admin.site.register(CarColor, CarColorAdmin)
@@ -44,3 +48,4 @@ admin.site.register(CarMark, CarMarkAdmin)
 admin.site.register(CarOwner, CarOwnerAdmin)
 admin.site.register(Car, CarAdmin)
 admin.site.register(CarTrailer, CarTrailerAdmin)
+admin.site.register(CarPlate, CarPlateAdmin)
