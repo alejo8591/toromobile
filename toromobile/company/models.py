@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from datetime import datetime
-from django.db.models.fields.related import ForeignKey, ManyToOneRel 
-from driver.models import CodeDane
+#from django.db.models.fields.related import ForeignKey, ManyToOneRel 
+from city.models import CodeDANE
 
 """
     Este modelo se hace con base a la documento del Ministerio de Trasporte
@@ -21,7 +21,7 @@ class CompanyShipping(models.Model):
     class Meta:
         ordering = ['toro_cs_date_creation']
         verbose_name = "Direcciónes de envio y despacho"
-        
+
 class Company(models.Model):
     toro_c_type_id = models.IntegerField(max_length= 2, choices=((1, 'Cédula'),(2, 'NIT'),(3, 'Extranjería')), verbose_name='Tipo de identificación', help_text="Tipo de identificación de la empresa")
     toro_c_id = models.CharField(max_length=20, verbose_name='Número identificación', help_text="Número de identificación de la empresa")
@@ -30,7 +30,7 @@ class Company(models.Model):
     toro_c_fax = models.IntegerField(max_length=10, verbose_name='FAX', help_text="Número telefonico del FAX de la empresa")
     toro_c_address = models.CharField(max_length=40, verbose_name='Dirección', help_text="Dirección de contacto de la empresa")
     toro_c_address_shipping = models.ManyToManyField(CompanyShipping)
-    toro_c_city = models.ForeignKey(CodeDane)
+    toro_c_city = models.ForeignKey(CodeDANE, verbose_name='Ciudad',  help_text='Código de la ciudad según el DANE')
     toro_c_number_authorized = models.CharField(max_length=40, verbose_name='Número Ministerio', help_text="Numero de autorización de la empresa según el Ministerio de Transporte")
     toro_c_date_creation = models.DateField(default=datetime.now, auto_now = False, editable=False, verbose_name='Fecha de creación empresa')
     def __unicode__(self):
