@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.db import models
-from driver.models import CodeDane
 from package.models import Package, PackageProduct
 
 class PackageAdmin(admin.ModelAdmin):
@@ -11,4 +10,3 @@ class PackageProductAdmin(admin.ModelAdmin):
     
 admin.site.register(Package, PackageAdmin)
 admin.site.register(PackageProduct, PackageProductAdmin)
-
