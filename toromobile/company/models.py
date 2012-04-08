@@ -24,7 +24,7 @@ class CompanyShipping(models.Model):
 
 class Company(models.Model):
     toro_c_type_id = models.IntegerField(max_length= 2, choices=((1, 'Cédula'),(2, 'NIT'),(3, 'Extranjería')), verbose_name='Tipo de identificación', help_text="Tipo de identificación de la empresa")
-    toro_c_id = models.CharField(max_length=20, verbose_name='Número identificación', help_text="Número de identificación de la empresa")
+    toro_c_id = models.CharField(max_length=20, unique=True ,verbose_name='Número identificación', help_text="Número de identificación de la empresa")
     toro_c_name = models.CharField(max_length=60, verbose_name='Nombre Empresa', help_text="Nombre de la empresa para prestarle el servicio")
     toro_c_phone = models.IntegerField(max_length=10, verbose_name='Telefono', help_text="Número telefonico de la empresa")
     toro_c_fax = models.IntegerField(max_length=10, verbose_name='FAX', help_text="Número telefonico del FAX de la empresa")
