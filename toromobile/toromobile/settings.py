@@ -140,6 +140,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'devserver',
     'car',
+    'city',
     'driver',
     'company',
     'package',
