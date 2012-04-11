@@ -22,7 +22,6 @@ class CarDriver(models.Model):
     #Optimización para ver en el admin site de Django
     def __unicode__(self):
        return u'%s %s %s %s' %(self.toro_cd_id, self.toro_cd_first_name, self.toro_cd_name)
-        
     class Meta:
         ordering = ['toro_cd_id']
         verbose_name = "Datos conductore"
