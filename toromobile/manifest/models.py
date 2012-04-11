@@ -14,11 +14,11 @@ from company.models import Company
 #Configuración el Vehiculo
 class ConfigCar(models.Model):
     toro_cc_id = models.CharField(max_length=13, unique=True, verbose_name='Designación', help_text="Desginación de la configuración según norma")
-    toro_cc_scheme = models.ImageField(verbose_name='Esquema', help_text="Imagen Referente al Esquema del Tipo de Carro")
+    toro_cc_scheme = models.ImageField(verbose_name='Esquema', help_text="Imagen Referente al Esquema del Tipo de Carro" , upload_to='blah', default='path/to/my/default/image.jpg')
     def __unicode__(self):
-       return u'%s %s' %(self.toro_cc_id, self.toro_cc_scheme)
+       return u'%s' %(self.toro_cc_id)
     class Meta:
-        ordering = ['toro_cd_name_city']
+        ordering = ['toro_cc_id']
         verbose_name = "Códigos DANE ciudades de envio"
 #Heredando de CodeDane para ingresar los codigos
 class ManifestRecevier(CodeDane):
@@ -46,13 +46,13 @@ class ManifestCargo(models.Model):
     toro_mf_advanced = models.FloatField(max_length=20, verbose_name='Valor Anticipo', help_text="valor que la empresa paga por adelantado")
     toro_mf_balance_due = models.FloatField(max_length=20,verbose_name='Por Pagar', help_text="Diferencia entre valor neto y el valor del anticipo")
     toro_mf_total_letter = models.CharField(max_length=120, verbose_name='Total en letras', help_text="Se registra en letras el valor total del viaje")
-    toro_mf_pay_city = models.ForeingKey(ManifestCargoPay, verbose_name='Ciudad Pago', help_text="Lugar en el cual será pagado el saldo del valor del viaje.")
-    toro_mf_pay_date = models.DatetimeField(verbose_name='Fecha Pago', help_text="a fecha para el pago del saldo del valor del viaje")
+    toro_mf_pay_city = models.ForeignKey(ManifestCargoPay, verbose_name='Ciudad Pago', help_text="Lugar en el cual será pagado el saldo del valor del viaje.")
+    toro_mf_pay_date = models.DateTimeField(verbose_name='Fecha Pago', help_text="a fecha para el pago del saldo del valor del viaje")
     
     def __unicode__(self):
        return u'%s %s' %(self.toro_mf_id, self.toro_mf_pay_date)
     class Meta:
-        ordering = ['toro_mf_id']
+        ordering = ['toro_mf_pay_date']
         verbose_name = "Datos de flete"
 
 class Manifest(models.Model):
