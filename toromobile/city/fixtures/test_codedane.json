@@ -1,0 +1,20 @@
+[
+    {
+        "pk": 1, 
+        "model": "city.codedane", 
+        "fields": {
+            "toro_cd_id_city": 5212, 
+            "toro_cd_dpto": "Antioquia", 
+            "toro_cd_name_city": "Copacabana"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "city.codedane", 
+        "fields": {
+            "toro_cd_id_city": 63212, 
+            "toro_cd_dpto": "Quindio", 
+            "toro_cd_name_city": "C\u00f3rdoba"
+        }
+    }
+]
