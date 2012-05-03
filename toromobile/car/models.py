@@ -95,6 +95,7 @@ class CarPlate(models.Model):
 class CarTrailer(models.Model):
     toro_ct_id = models.CharField(max_length=60, verbose_name='Designación', help_text="designación de acuerdo con la disposición de los ejes")
     toro_ct_description = models.CharField(max_length=60, verbose_name='Descripción', help_text="Caracteristicas de la designación del remolque")
+    toro_ct_scheme = models.ImageField(verbose_name='Esquema', help_text="Imagen Referente al Esquema del Tipo de Carro", upload_to='uploads')
     def __unicode__(self):
        return u'%s %s' %(self.toro_ct_id, self.toro_ct_description)
         
