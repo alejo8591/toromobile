@@ -3,18 +3,18 @@
         "pk": 1, 
         "model": "city.codedane", 
         "fields": {
-            "toro_cd_id_city": 5212, 
-            "toro_cd_dpto": "Antioquia", 
-            "toro_cd_name_city": "Copacabana"
+            "toro_cd_id_city": 63212, 
+            "toro_cd_dpto": "ANTIOQUIA", 
+            "toro_cd_name_city": "COPACABANA"
         }
     }, 
     {
         "pk": 2, 
         "model": "city.codedane", 
         "fields": {
-            "toro_cd_id_city": 63212, 
-            "toro_cd_dpto": "Quindio", 
-            "toro_cd_name_city": "C\u00f3rdoba"
+            "toro_cd_id_city": 3222, 
+            "toro_cd_dpto": "CUNDINAMARCA", 
+            "toro_cd_name_city": "BOGOT\u00c1"
         }
     }
 ]
