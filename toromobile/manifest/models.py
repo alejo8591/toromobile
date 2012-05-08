@@ -14,12 +14,12 @@ from company.models import Company
 #Configuración el Vehiculo
 class ConfigCar(models.Model):
     toro_cc_id = models.CharField(max_length=13, unique=True, verbose_name='Designación', help_text="Desginación de la configuración según norma")
-    toro_cc_scheme = models.ImageField(verbose_name='Esquema', help_text="Imagen Referente al Esquema del Tipo de Carro" , upload_to='blah', default='path/to/my/default/image.jpg')
+    toro_cc_scheme = models.ImageField(verbose_name='Esquema', help_text="Imagen Referente al Esquema del Tipo de Carro", upload_to='uploads')
     def __unicode__(self):
        return u'%s' %(self.toro_cc_id)
     class Meta:
         ordering = ['toro_cc_id']
-        verbose_name = "Códigos DANE ciudades de envio"
+        verbose_name = "Configuración Carroceria"
 #Heredando de CodeDane para ingresar los codigos
 class ManifestRecevier(CodeDane):
     #Código asignado de la ciudad, municipio, casrio según DANE
@@ -39,7 +39,7 @@ class ManifestCargoPay(CodeDane):
 
 class ManifestCargo(models.Model):
     #El flete se debe amarrar a una empresa
-    toro_mf_id = models.ManyToManyField(Company, verbose_name='Empresa(s)', help_text="Empresa(s) se les realiza el Envio")
+    toro_mf_id = models.ForeignKey(Company, verbose_name='Empresa(s)', help_text="Empresa(s) se les realiza el Envio")
     toro_mf_retefuente = models.FloatField(max_length=20, verbose_name='Rete-Fuente', help_text="Retención en la Fuente")
     toro_mf_reteica = models.FloatField(max_length=20, verbose_name='ICA', help_text="Retención ICA")
     toro_mf_net_pay = models.FloatField(max_length=20, verbose_name='Pago Neto', help_text="Valor Neto a Pagar")

@@ -6,7 +6,7 @@ from city.models import CodeDANE, CodeDane
 from company.models import *
 from driver.models import CarDriver
 from routes.models import Route
-
+from packet.models import Package
 
 """
     Este modelo se hace con base a la documento del Ministerio de Trasporte
@@ -35,12 +35,23 @@ class DespatchCargo(models.Model):
         
 class DespatchCIC(models.Model):
     toro_dcic_route = models.ForeignKey(Route, verbose_name='Ruta', help_text="Número de Ruta esptipulada para el despacho")
-    toro_dcic = models.CharField(max_length=120, verbose_name='Total en letras', help_text="Se registra en letras el valor total del viaje")
+    #normal, medio, alto nivel
+    toro_dcic_security = models.IntegerField(max_length=1, choices=((1,'Normal'),(2, 'Medio'), (3, 'Alto') ), verbose_name='Nivel Seguimiento', help_text="Nivel de seguimiento según tipo de Carga")
+    toro_dcic_date_despatch = models.DateTimeField(verbose_name='Nivel Seguimiento', help_text="Nivel de seguimiento según tipo de Carga")
+
+    def __unicode__(self):
+       return u'%s %s' %(self.toro_dcic_route, self.toro_dcic_date_despatch)
+    class Meta:
+        ordering = ['toro_dcic_date_despatch']
+        verbose_name = "Información de CIC y Ruta"
 
 
 class DespatchCharge(models.Model):
+    toro_dc_manifest =  models.ForeignKey(Package, verbose_name='Número Manifiesto', help_text="Paquetes y Número del Manifiesto")
     toro_dc_route = models.ForeignKey(Route, verbose_name='Ruta', help_text="Ruta del despacho")
     toro_dc_car_plate = models.ForeignKey(Car, verbose_name='Placa Vehículo', help_text="Placa del vehiculo Transportador")
     toro_dc_driver_id = models.ForeignKey(CarDriver, verbose_name='Datos Conductor', help_text="Datos correspondientes al conductor")
     toro_dc_name_cargo = models.CharField(max_length=120, verbose_name='Cargue y Descargue', help_text="Nombre de quien cancela este valor, de conformidad con la Resolución No. 870")
+    toro_dc_cargo = models.ForeignKey(DespatchCargo, verbose_name='Datos adicionales', help_text="Datos de pago y generación de costos")
+    toro_dc_cic = models.ForeignKey(DespatchCIC, verbose_name='Datos CIC', help_text="Información CIC (Centro de Información y Control)")
     toro_dc_date_created = models.DateField(default=datetime.now, auto_now = False, editable=False, verbose_name='Fecha de creación del manifiesto')

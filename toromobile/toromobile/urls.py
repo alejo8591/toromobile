@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from toromobile.views import current_datetime
 from django.conf import settings
+from toromobile.settings import STATIC_ROOT
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.i18n import i18n_patterns
@@ -23,7 +24,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
         # Static content #### FOR DEVELOPMENT!! ####
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
-        {'document_root': 'static'}),
+        {'document_root': STATIC_ROOT}),
 )
 
 urlpatterns += patterns('',

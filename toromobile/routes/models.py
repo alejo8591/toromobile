@@ -21,6 +21,10 @@ class Route(models.Model):
     toro_r_name = models.CharField(max_length= 10, verbose_name='Número Ruta',  help_text='Número de la Ruta según cronograma de envión', unique=True)
     toro_r_origin = models.ForeignKey(CodeDANE, verbose_name='Ciudad Origen',  help_text='Código de la ciudad Origen según el DANE')
     toro_r_destiny = models.ForeignKey(RouteDestiny, verbose_name='Ciudad Destino',  help_text='Código de la ciudad Destino según el DANE')
+    toro_r_type =  models.IntegerField(max_length=1, choices=(
+        (1,'Ruta Nacional'),
+        (2, 'Ruta Regional'),
+        (3, 'Ruta Urbana')), verbose_name='Tipo Ruta', help_text="Tipo de Rutas de Carga")
     
     def __unicode__(self):
        return u'%s %s %s' %(self.toro_r_name, self.toro_r_origin, self.toro_r_destiny)

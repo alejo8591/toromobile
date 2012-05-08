@@ -62,16 +62,17 @@ USE_I18N = True
 USE_L10N = True
 
 # If you set this to False, Django will not use timezone-aware datetimes.
-USE_TZ = True
+#USE_TZ = True
 USE_I18N = True
 USE_L10N = True
-MEDIA_ROOT = ROOT_CONF
+MEDIA_ROOT = ROOT_CONF + '/uploads/'
 MEDIA_URL = '/uploads/'
 STATIC_ROOT = ROOT_CONF + '/static/'
 STATIC_URL = '/static'
 ADMIN_MEDIA_PREFIX = STATIC_URL + '/grappelli/'
 # Additional locations of static files
 STATICFILES_DIRS = (
+    (ROOT_CONF + '/static/'),
     (ROOT_CONF + '/static_files/'),
 )
 # List of finder classes that know how to find static files in
@@ -98,6 +99,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -110,8 +112,6 @@ WSGI_APPLICATION = 'toromobile.wsgi.application'
 TEMPLATE_DIRS = (
     (ROOT_CONF + '/templates'),
 )
-
-ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
 
 GRAPPELLI_ADMIN_TITLE = "<li class='user-options-container collapse closed'> \
 <a href='javascript://' class='user-options-handler collapse-handler'> \
@@ -133,15 +133,15 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    #'django_extensions',
-    #'debug_toolbar',
+    'django_extensions',
+    'debug_toolbar',
     'car',
     'city',
     'company',
     'despatch',
     'driver',
     'packet',
-    'routes'
+    'routes',
 )
 
 FIXTURE_DIRS = (
