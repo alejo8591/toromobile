@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head lang="es-ES">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>{% block title %}toromobile{% endblock %}</title>
         <!-- Load CSS -->
@@ -18,18 +19,75 @@
         {% block head %}{% endblock %}
     </head>
     <body>
+<div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
         <div class="container-fluid">
-            <header>
-                <h1>Toromobile</h1>
-		  <h3>Sistema de Gestion de Transportes de Carga</h3>
-                <span>{% block quote %} v{{ version }} {{ status }} {% endblock %}</span>
-            </header><hr />
-            <section>
-                <article>
-                     
-                    <button class="btn btn-inverse" value="Hola" type="submit" onclick="alert('Saludos')">Saludos</button>
-                </article>
-            </section>
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Toromobile</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">Seguimiento</a></li>
+              <li><a href="/admin/">Administración</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
         </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="hero-unit">
+        <h1>SEDT!</h1>
+        <p>Es un completo sistema de logistica y rastreo de cargas de la compañia Toro móvil para sus clientes</p>
+        <p><a class="btn btn-primary btn-large">Saber más &raquo;</a></p>
+      </div>
+
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="span4">
+          <h2>Beneficios</h2>
+           <p>Completa aplicación enfocada a los usuarios de nuestros servicios,
+	   Toro movíl tiene un plan personal, PyMEs y Grandes Empresas</p>
+          <p><a class="btn" href="#">Buscar un Plan &raquo;</a></p>
+        </div>
+        <div class="span4">
+          <h2>Caracteristicas</h2>
+           <p>Desde cualquier parte del mundo usted puede rastrear sus paquetes, encomiendas, sobres y Remesas
+	   con la mejor tecnología del mercado, y con muy buenos costos</p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+       </div>
+        <div class="span4">
+          <h2>Toro Móvil</h2>
+          <p>Somos la empresa Lider en Colombia de Logística con diferentes tipos de servicios, dispuestos
+	  a ofrecer la mejor atención, tecnología y seguridad. </p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+        </div>
+      </div>
+      <hr />
+      <footer>
+        <p>&copy; Toro móvil 2012</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/bootstrap-transition.js"></script>
+    <script src="../assets/js/bootstrap-alert.js"></script>
+    <script src="../assets/js/bootstrap-modal.js"></script>
+    <script src="../assets/js/bootstrap-dropdown.js"></script>
+    <script src="../assets/js/bootstrap-scrollspy.js"></script>
+    <script src="../assets/js/bootstrap-tab.js"></script>
+    <script src="../assets/js/bootstrap-tooltip.js"></script>
+    <script src="../assets/js/bootstrap-popover.js"></script>
+    <script src="../assets/js/bootstrap-button.js"></script>
+    <script src="../assets/js/bootstrap-collapse.js"></script>
+    <script src="../assets/js/bootstrap-carousel.js"></script>
+    <script src="../assets/js/bootstrap-typeahead.js"></script>
     </body> 
 </html>
