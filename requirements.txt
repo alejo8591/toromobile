@@ -1,11 +1,12 @@
 Django==1.4
 MySQL-python==1.2.3
 PIL==1.1.7
+argparse==1.2.1
+distribute==0.6.24
 django-debug-toolbar==0.9.4
-django-devserver==0.3.1
+django-devserver==0.3.2
 django-extensions==0.8
 django-grappelli==2.3.8
-dropbox==1.4
-oauth==1.0.1
+psycopg2==2.4.5
 simplejson==2.5.0
 wsgiref==0.1.2
