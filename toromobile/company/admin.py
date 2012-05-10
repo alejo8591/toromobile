@@ -3,7 +3,7 @@ from django.db import models
 from company.models import Company, CompanyShipping 
 
 class CompanyShippingAdmin(admin.ModelAdmin):
-    list_display = ('toro_cs_date_creation', 'toro_cs')
+    list_display = ('toro_cs_date_creation', 'toro_cs_company', 'toro_cs')
 
 class CompanyAdmin(admin.ModelAdmin):
     list_display = ('toro_c_id', 'toro_c_name', 'toro_c_city', 'toro_c_phone')

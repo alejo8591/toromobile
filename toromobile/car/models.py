@@ -34,14 +34,15 @@ class CarColor(models.Model):
 class CarMandated(models.Model):
     toro_cm_type_id = models.IntegerField(max_length= 2, choices=((1, 'Cédula'),(2, 'NIT'),(3, 'Extranjería')), verbose_name='Tipo de identificación', help_text="Si el evento es Streaming o en Radio")
     toro_cm_id = models.CharField(max_length=20, verbose_name='Número identificación', help_text="Número de identificación del encargado del vehiculo")
+    toro_cm_name = models.CharField(max_length=20, null=True, blank=True, verbose_name='Nombre Empresa', help_text="Nombre de la empresa propietaria si es necesario")
     toro_cm_first_name = models.CharField(max_length=32, verbose_name='Nombre(s)', help_text="Nombre(s) de la empresa o del encargado del vehiculo")
     toro_cm_last_name = models.CharField(max_length=32, verbose_name='Apellido(s)', help_text="Apellido(s) de la empresa o del encargado del vehiculo")
     #Optimización para ver en el admin site de Django
     def __unicode__(self):
-       return u'%s %s %s' %(self.toro_cm_type_id, self.toro_cm_owner_first_name, self.toro_cm_owner_last_name)
+       return u'%s %s %s' %(self.toro_cm_id, self.toro_cm_first_name, self.toro_cm_last_name)
         
     class Meta:
-        ordering = ['toro_cm_type_id']
+        ordering = ['toro_cm_id']
         verbose_name = "Responsables Vehiculo"
             
 #Marcas de los carros con referencia a MINMTIMA
@@ -70,12 +71,13 @@ class CarLine(models.Model):
 class CarOwner(models.Model):
     toro_co_type_id = models.IntegerField(max_length= 2, choices=((1, 'Cédula'),(2, 'NIT'),(3, 'Extranjería')), verbose_name='Tipo de identificación', help_text="Tipo de identificación del propietario del vehiculo")
     toro_co_id = models.CharField(max_length=20, verbose_name='Número identificación', help_text="Número de identificación del dueño del vehiculo")
+    toro_co_name = models.CharField(max_length=20, null=True, blank=True, verbose_name='Nombre Empresa', help_text="Nombre de la empresa propietaria si es necesario")
     toro_co_first_name = models.CharField(max_length=32, verbose_name='Nombre(s)', help_text="Nombre(s) de la empresa o del dueño del vehiculo")
     toro_co_last_name = models.CharField(max_length=32, verbose_name='Apellido(s)', help_text="Apellido(s) de la empresa o del dueño del vehiculo")
     toro_co_register_national = models.IntegerField(max_length= 20, verbose_name='Registro Nacional', help_text="Registro Nacional de Transporte de Carga Número")
     #Optimización para ver en el admin site de Django
     def __unicode__(self):
-       return u'%s %s %s' %(self.toro_co_type_id, self.toro_co_owner_first_name, self.toro_co_owner_last_name)
+       return u'%s %s %s' %(self.toro_co_id, self.toro_co_first_name, self.toro_co_last_name)
         
     class Meta:
         ordering = ['toro_co_type_id']
@@ -110,7 +112,7 @@ class Car(models.Model):
    toro_car_mark = models.ForeignKey(CarMark, verbose_name='Marca Vehiculo', help_text="Marca del Vehículo")
    toro_car_line = models.ForeignKey(CarLine, verbose_name='Linea Vehiculo', help_text="Linea según Marca del Vehículo")
    toro_car_model_year =  models.DateField(verbose_name='Modelo', help_text="Ingrese el Modelo del año de producción del Carro Ejemplo: 2001")
-   toro_car_model_power = models.DateField(verbose_name='Modelo Repotenciado', help_text="año a que haya sido repotenciado o transformado un vehículo", blank=True)
+   toro_car_model_power = models.DateField(blank=True, null=True, verbose_name='Modelo Repotenciado', help_text="año a que haya sido repotenciado o transformado un vehículo")
    toro_car_num_serial = models.CharField(max_length=25, verbose_name='Número Serie', help_text="Número de serie del Vehiculo")
    toro_car_color = models.ForeignKey(CarColor, verbose_name='Color Vehiculo')
    toro_car_bodyWork = models.ForeignKey(CarBodyWork, verbose_name='Tipo de Carroceria')

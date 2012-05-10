@@ -1,16 +1,14 @@
 # Django settings for toromobile project.
-
-DEBUG = True
-
 __version__ = "0.0.1"
 __status__ = "alpha"
 
 # Get the current directory
-import os
-ROOT_CONF = os.path.dirname(os.path.realpath(__file__))
+import os, sys
+ubi = os.path.dirname(os.path.realpath(__file__))
 
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
+#EBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 
 
 ADMINS = (
@@ -43,7 +41,7 @@ DATABASES = {
 }
 
 #django debug toolbar
-INTERNAL_IPS = ('127.0.0.1',)
+#INTERNAL_IPS = ('127.0.0.1',)
 TIME_ZONE = 'America/Bogota'
 LANGUAGE_CODE = 'es-ES'
 LANGUAGES = (
@@ -52,28 +50,18 @@ LANGUAGES = (
 )
 
 SITE_ID = 1
-
-# If you set this to False, Django will make some optimizations so as not
-# to load the internationalization machinery.
 USE_I18N = True
-
-# If you set this to False, Django will not format dates, numbers and
-# calendars according to the current locale.
 USE_L10N = True
-
 # If you set this to False, Django will not use timezone-aware datetimes.
 #USE_TZ = True
-USE_I18N = True
-USE_L10N = True
-MEDIA_ROOT = ROOT_CONF + '/uploads/'
+MEDIA_ROOT = ubi + '/uploads/'
 MEDIA_URL = '/uploads/'
-STATIC_ROOT = ROOT_CONF + '/static/'
-STATIC_URL = '/static'
+STATIC_ROOT = ubi + '/static/'
+STATIC_URL = '/static/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + '/grappelli/'
 # Additional locations of static files
 STATICFILES_DIRS = (
-    (ROOT_CONF + '/static/'),
-    (ROOT_CONF + '/static_files/'),
+    (ubi + '/static_files/'),
 )
 # List of finder classes that know how to find static files in
 # various locations.
@@ -93,13 +81,23 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.contrib.messages.context_processors.messages",
+    "django.core.context_processors.request",
+)
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    #'debug_toolbar.middleware.DebugToolbarMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -110,7 +108,7 @@ ROOT_URLCONF = 'toromobile.urls'
 WSGI_APPLICATION = 'toromobile.wsgi.application'
 
 TEMPLATE_DIRS = (
-    (ROOT_CONF + '/templates'),
+    (ubi + '/templates/'),
 )
 
 GRAPPELLI_ADMIN_TITLE = "<li class='user-options-container collapse closed'> \
@@ -133,8 +131,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'django_extensions',
-    'debug_toolbar',
+    #'django_extensions',
+    #'debug_toolbar',
     'car',
     'city',
     'company',

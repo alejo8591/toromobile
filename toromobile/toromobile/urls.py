@@ -24,7 +24,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
         # Static content #### FOR DEVELOPMENT!! ####
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
-        {'document_root': STATIC_ROOT}),
+        {'document_root': 'static'}),
 )
 
 urlpatterns += patterns('',
@@ -33,6 +33,4 @@ urlpatterns += patterns('',
         {'document_root': settings.MEDIA_ROOT}),
 )
 
-if settings.DEBUG:
-    # Serve static files
-    urlpatterns += staticfiles_urlpatterns()
+urlpatterns += staticfiles_urlpatterns()

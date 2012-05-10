@@ -44,14 +44,33 @@ class DespatchCIC(models.Model):
     class Meta:
         ordering = ['toro_dcic_date_despatch']
         verbose_name = "Información de CIC y Ruta"
+#Precintos
+class DespatchSeal(models.Model):
+    toro_ds_seal = models.IntegerField(max_length=10, unique=True, verbose_name='Número Precinto', help_text="Número del o los Precintos para cada Camion")
+    toro_ds_observation = models.TextField(verbose_name='Observación Precinto', help_text="Indicar la Placa del Carro o alguna observación")
+    toro_ds_date_created = models.DateField(default=datetime.now, auto_now = False, editable=False, verbose_name='Fecha de creación del manifiesto')
 
+    def __unicode__(self):
+       return u'%s %s' %(self.toro_ds_seal, self.toro_ds_date_created)
+    class Meta:
+        ordering = ['toro_ds_date_created']
+        verbose_name = "Carga de Precinto"
 
 class DespatchCharge(models.Model):
     toro_dc_manifest =  models.ForeignKey(Package, verbose_name='Número Manifiesto', help_text="Paquetes y Número del Manifiesto")
     toro_dc_route = models.ForeignKey(Route, verbose_name='Ruta', help_text="Ruta del despacho")
     toro_dc_car_plate = models.ForeignKey(Car, verbose_name='Placa Vehículo', help_text="Placa del vehiculo Transportador")
-    toro_dc_driver_id = models.ForeignKey(CarDriver, verbose_name='Datos Conductor', help_text="Datos correspondientes al conductor")
+    toro_dc_driver_id = models.ManyToManyField(CarDriver, verbose_name='Datos Conductor', help_text="Datos correspondientes al conductor")
     toro_dc_name_cargo = models.CharField(max_length=120, verbose_name='Cargue y Descargue', help_text="Nombre de quien cancela este valor, de conformidad con la Resolución No. 870")
     toro_dc_cargo = models.ForeignKey(DespatchCargo, verbose_name='Datos adicionales', help_text="Datos de pago y generación de costos")
     toro_dc_cic = models.ForeignKey(DespatchCIC, verbose_name='Datos CIC', help_text="Información CIC (Centro de Información y Control)")
+    toro_dc_seal = models.ManyToManyField(DespatchSeal, verbose_name='Datos Precinto', help_text="Elija los Precintos para el Carro o Remolque")
+    toro_dc_observation = models.TextField(verbose_name='Observación', help_text="Observación del Despacho")
     toro_dc_date_created = models.DateField(default=datetime.now, auto_now = False, editable=False, verbose_name='Fecha de creación del manifiesto')
+
+    
+    def __unicode__(self):
+       return u'%s %s' %(self.toro_dc_manifest, self.toro_dc_date_created)
+    class Meta:
+        ordering = ['toro_dc_date_created']
+        verbose_name = "Despacho"

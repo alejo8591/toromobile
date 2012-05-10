@@ -3,7 +3,7 @@ from django.db import models
 from packet.models import Package, PackageProduct
 
 class PackageAdmin(admin.ModelAdmin):
-    list_display = ('toro_p_manifest', 'toro_p_name_shipping', 'toro_p_name_receiver', 'toro_p_city_receiver')
+    list_display = ('toro_p_manifest', 'toro_p_name_shipping', 'toro_p_name_receiver', 'toro_p_service')
 
 class PackageProductAdmin(admin.ModelAdmin):
     list_display = ('toro_pp_id', 'toro_pp_description')

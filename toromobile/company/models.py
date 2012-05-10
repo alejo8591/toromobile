@@ -12,11 +12,12 @@ from city.models import CodeDANE
 """
 #Direcciones de envio para las empresas
 class CompanyShipping(models.Model):
+    toro_cs_company = models.ForeignKey('Company', verbose_name='Relación Empresa', help_text="Relación de direcciones con la empresa")
     toro_cs = models.CharField(max_length=40, verbose_name='Dirección de envio', help_text="Dirección de envio de la empresa")
     toro_cs_observation = models.TextField(max_length=40, verbose_name='Observaciones Dirección', help_text=" Observaciones con respecto a la Dirección de envio de la empresa")
     toro_cs_date_creation = models.DateField(default=datetime.now, auto_now = False, editable=False, verbose_name='Fecha de creación dirección')
     def __unicode__(self):
-       return u'%s %s' %(self.toro_cs_date_creation, self.toro_cs)
+       return u'%s %s %s' %(self.toro_cs_date_creation, self.toro_cs_company, self.toro_cs)
         
     class Meta:
         ordering = ['toro_cs_date_creation']
@@ -29,10 +30,11 @@ class Company(models.Model):
     toro_c_phone = models.IntegerField(max_length=10, verbose_name='Telefono', help_text="Número telefonico de la empresa")
     toro_c_fax = models.IntegerField(max_length=10, verbose_name='FAX', help_text="Número telefonico del FAX de la empresa")
     toro_c_address = models.CharField(max_length=40, verbose_name='Dirección', help_text="Dirección de contacto de la empresa")
-    toro_c_address_shipping = models.ManyToManyField(CompanyShipping)
+    toro_c_address_shipping = models.ManyToManyField('CompanyShipping', verbose_name='Dirección envio', help_text="Dirección de envio para los despachos")
     toro_c_city = models.ForeignKey(CodeDANE, verbose_name='Ciudad',  help_text='Código de la ciudad según el DANE')
     toro_c_number_authorized = models.CharField(max_length=40, verbose_name='Número Ministerio', help_text="Numero de autorización de la empresa según el Ministerio de Transporte")
     toro_c_date_creation = models.DateField(default=datetime.now, auto_now = False, editable=False, verbose_name='Fecha de creación empresa')
+    
     def __unicode__(self):
        return u'%s %s %s %s' %(self.toro_c_id, self.toro_c_name, self.toro_c_city, self.toro_c_phone)
         

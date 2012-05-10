@@ -15,13 +15,13 @@ class CarLineAdmin(admin.ModelAdmin):
     list_display = ('toro_cl_code', 'toro_cl_description')
     
 class CarMandatedAdmin(admin.ModelAdmin):
-    list_display = ('toro_cm_type_id', 'toro_cm_first_name', 'toro_cm_last_name')
+    list_display = ('toro_cm_id', 'toro_cm_first_name', 'toro_cm_last_name')
     
 class CarMarkAdmin(admin.ModelAdmin):
-    list_display = ('toro_cm_code', 'toro_cm_code')
+    list_display = ('toro_cm_code', 'toro_cm_description')
 
 class CarOwnerAdmin(admin.ModelAdmin):
-    list_display = ('toro_co_type_id', 'toro_co_first_name', 'toro_co_last_name')
+    list_display = ('toro_co_id', 'toro_co_first_name', 'toro_co_last_name')
     
 class CarTrailerAdmin(admin.ModelAdmin):
     list_display = ('toro_ct_id', 'toro_ct_description')
